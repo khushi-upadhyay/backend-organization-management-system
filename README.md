@@ -1,6 +1,9 @@
 # Organization Management Service
 
 A multi-tenant backend service built with FastAPI and MongoDB for managing organizations with dynamic collections. Each organization gets its own dedicated MongoDB collection, and the system uses a master database to store organization metadata and admin credentials.
+## Deployement Link
+
+https://backend-organization-management-sys.vercel.app/
 
 ## GitHub Repository
 
@@ -8,65 +11,12 @@ https://github.com/khushi-upadhyay/backend-organization-management-system.git
 
 ## Architecture
 
-```
-┌─────────────────────────────────────────┐
-│           API Layer (Routes)            │
-│     FastAPI endpoints and validation    │
-└────────────────┬────────────────────────┘
-                 │
-┌────────────────▼────────────────────────┐
-│        Service Layer (Business Logic)   │
-│   OrganizationService, AuthService      │
-└────────────────┬────────────────────────┘
-                 │
-┌────────────────▼────────────────────────┐
-│      Database Layer (Data Access)       │
-│   DatabaseManager, MongoDB Collections  │
-└─────────────────────────────────────────┘
-```
+<img width="1240" height="1990" alt="FastAPI Service-2025-12-12-184643" src="https://github.com/user-attachments/assets/5f68f107-6497-465b-818e-7ec1d762dd66" />
 
 ### High-Level Architecture Diagram
 
-```
-                    Client Application
-                           │
-                           ▼
-                    ┌──────────────┐
-                    │  FastAPI App │
-                    │   (Routes)   │
-                    └──────┬───────┘
-                           │
-        ┌──────────────────┼──────────────────┐
-        │                  │                  │
-        ▼                  ▼                  ▼
-┌──────────────┐  ┌──────────────┐  ┌──────────────┐
-│ Organization │  │   Admin      │  │   Health     │
-│   Routes     │  │   Routes     │  │   Routes     │
-└──────┬───────┘  └──────┬───────┘  └──────┬───────┘
-       │                 │                 │
-       └─────────────────┼─────────────────┘
-                         │
-                         ▼
-                    ┌──────────────┐
-                    │   Services   │
-                    │   (Classes)  │
-                    └──────┬───────┘
-                           │
-                           ▼
-                    ┌──────────────┐
-                    │   Database   │
-                    │   Manager    │
-                    └──────┬───────┘
-                           │
-        ┌──────────────────┼──────────────────┐
-        │                  │                  │
-        ▼                  ▼                  ▼
-┌──────────────┐  ┌──────────────┐  ┌──────────────┐
-│  Master DB   │  │   Org Coll   │  │   Org Coll   │
-│ - orgs       │  │   org_abc    │  │   org_xyz    │
-│ - admins     │  │              │  │              │
-└──────────────┘  └──────────────┘  └──────────────┘
-```
+<img width="2737" height="3100" alt="FastAPI Organization Route-2025-12-12-183930" src="https://github.com/user-attachments/assets/fa22ac6a-d507-415f-b252-2d816c9c5f14" />
+
 
 ## Design Choices
 
