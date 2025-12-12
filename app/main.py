@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import RedirectResponse
 from contextlib import asynccontextmanager
 
 from app.config import settings
@@ -42,12 +43,7 @@ app.include_router(admin_router)
 
 @app.get("/", tags=["Health"])
 async def root():
-    return {
-        "message": "Welcome to Organization Management Service",
-        "status": "healthy",
-        "version": "1.0.0",
-        "docs": "/docs"
-    }
+    return RedirectResponse(url="/docs")
 
 
 @app.get("/health", tags=["Health"])
